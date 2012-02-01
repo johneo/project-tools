@@ -16,3 +16,5 @@ The initial (and current) version of project-tools is written towards deploying 
 Read the fabfile, vagrantfile and configs if you would like to know more about what project-tools does. I'll add docs as I start to abstract out gis.
 
 Feedback welcomed!
+
+http://blog.inspiredmedia.biz/2012/02/01/getting-started-with-geodjango-the-easy-way/
