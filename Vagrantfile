@@ -8,7 +8,6 @@ Vagrant::Config.run do |config|
 
   # Assign this VM to a host only network IP, allowing you to access it
   # via the IP.
-  # config.vm.network "33.33.33.60"
   config.vm.network :hostonly, "172.24.24.24"
 
   # Forward a port from the guest to the host, which allows for outside

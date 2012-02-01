@@ -27,10 +27,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 
 class Node:
+
     def __init__(self, public_dns_name):
         self.hostname = public_dns_name
         self.ssh_key_file = EC2_SSH_KEY_PATH
         self.ssh_user = USERNAME
+
 
 def provision_with_boto(name):
     config = read_config()
@@ -39,10 +41,12 @@ def provision_with_boto(name):
     else:
         return Node(run_instance(name))
 
+
 def connect():
     access_key = ACCESS_KEY
     secret_key = SECRET_KEY
     return connect_to_region(EC2_REGION, aws_access_key_id=access_key, aws_secret_access_key=secret_key)
+
 
 def run_instance(name):
     conn = connect()
@@ -67,6 +71,7 @@ def run_instance(name):
 
     return instance.public_dns_name
 
+
 def terminate_instance(name):
     print 'Shutting down', name, '...'
 
@@ -79,6 +84,7 @@ def terminate_instance(name):
     config.remove_section(name)
     write_config(config)
 
+
 def terminate_all_instances():
     conn = connect()
     for reservation in conn.get_all_instances():
@@ -87,9 +93,11 @@ def terminate_all_instances():
     if os.path.isfile(INSTANCES_FILE):
         os.remove(INSTANCES_FILE)
 
+
 def write_config(config):
     with open(INSTANCES_FILE, 'w') as fp:
         config.write(fp)
+
 
 def read_config():
     config = SafeConfigParser()
@@ -97,6 +105,7 @@ def read_config():
         with open(INSTANCES_FILE) as fp:
             config.readfp(fp)
     return config
+
 
 def public_dns(name):
     config = read_config()
