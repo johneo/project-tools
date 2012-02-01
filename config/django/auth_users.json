@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "auth.user", "fields": {"username": "dev", "first_name": "", "last_name": "", "is_active": true, "is_superuser": true, "is_staff": true, "last_login": "2012-01-29 09:58:48", "groups": [], "user_permissions": [], "password": "sha1$0312d$0b232bb1ecbda872f0f29d19343807eaa7eec1ea", "email": "dev@inspiredmedia.biz", "date_joined": "2012-01-29 09:58:48"}}]

@@ -1,0 +1,10 @@
+*~
+*.swp
+*.swo
+.DS_Store
+*.pyc
+*.pyo
+.vagrant
+public/media/admin-media
+project
+creds.py
