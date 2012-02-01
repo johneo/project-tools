@@ -146,6 +146,7 @@ def setup_vagrant():
     config_postgis_template()   # setup postgis template
     config_postgis() # create test postgis database
     sub_start_processes()  # Start everything
+    configure_gis_example_project()
 
 #### End Vagrant
 
@@ -164,12 +165,12 @@ def bootstrap():
     sub_get_requirements() # Get the requirements (pip install)
     sub_get_admin_media()  # Copy Django admin media over
     copy_wsgi_config()
-
     sub_copy_memcached_config() # Copies the memcache config
     config_postgres()   # reinit postgres with UTF-8 and setup users
     config_postgis_template()   # setup postgis template
     config_postgis() # create test postgis database
     sub_start_processes()  # Start everything
+    configure_gis_example_project()
 
 def sub_install_packages():
     "Installs necessary packages on host"
@@ -383,7 +384,7 @@ def config_postgis():
 
 #### End Configure Postgres
 
-#### DEPRECATED FOR GITHUB VERSION Create Example GIS GeoDjango Project
+#### Setup Example GIS GeoDjango Project
 
 def configure_gis_example_project():
     """
@@ -399,3 +400,10 @@ def configure_gis_example_project():
     run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py schemamigration world --initial" % env)
     run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py syncdb --noinput; python manage.py migrate --noinput; python manage.py loaddata auth_users.json" % env)
     sudo("rm -rf %(base)s/%(virtualenv)s/project/auth_users.json" % env)
+    load_gis_example_world_borders_data()
+    
+def load_gis_example_world_borders_data():
+    """
+    """
+    run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py loadgis" % env)
+    
