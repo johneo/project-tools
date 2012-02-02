@@ -439,6 +439,7 @@ def configure_gis_example_project():
     """
     put("config/django/auth_users.json", "%(base)s/%(virtualenv)s/project/auth_users.json" % env)
     run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py schemamigration world --initial" % env)
+    run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py schemamigration locations --initial" % env)
     run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py syncdb --noinput; python manage.py migrate --noinput; python manage.py loaddata auth_users.json" % env)
     sudo("rm -rf %(base)s/%(virtualenv)s/project/auth_users.json" % env)
     load_gis_example_world_borders_data()
@@ -449,5 +450,6 @@ def load_gis_example_world_borders_data():
     Load the example world borders data into the gis project
     """
     run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py world-loadgis" % env)
+    run("cd %(base)s/%(virtualenv)s; source bin/activate; cd project; python manage.py locations-loadgis" % env)
 
 #### End  Setup Example GIS GeoDjango Project ################################
