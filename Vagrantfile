@@ -18,4 +18,8 @@ Vagrant::Config.run do |config|
 
   # Share an additional folder to the guest VM.
   config.vm.share_folder("v2-data", "/project", "./")
+
+  config.vm.customize ["modifyvm", :id, "--memory", "1024"]
+
 end
+
